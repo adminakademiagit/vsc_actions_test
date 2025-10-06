@@ -12,25 +12,23 @@ jobs:
   # This workflow contains a single job called "build"
   moje_pierwsze_zadanie:
     # The type of runner that the job will run on
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+
+      - name: Sprawdzamy wersję Python
+        run: python -V
+
+      - name: Wyswietl aktualny katalog roboczy
+        run: pwd
+
+      - name: Wyswietl listę plikow
+        run: ls -a
+
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      - name: Pauza
-        run: |
-          echo "czekamy 10s"
-          sleep 10
-          echo "Idziemy dalej"
-        
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Wyswietl listę plikow
+        run: ls -a
