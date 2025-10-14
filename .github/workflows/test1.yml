@@ -11,10 +11,23 @@ name: pierwszy_przeplyw
 #  schedule:
 #    - cron: '*/2 * * * *'
 
-
 on:
   workflow_dispatch: 
-    
+    inputs:
+      wybor_klienta:
+        description: 'Wybierz klienta:'
+        required: true
+        default: 'Contoso'
+        type: choice
+        options:
+          - Contoso
+          - Nwtraders
+          - Arcacorp
+      nazwa_operatora:
+        description: 'Podaj swoje imię i nazwisko:'
+        required: false
+        type: string
+
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -41,3 +54,10 @@ jobs:
 
       - name: Wyswietl listę plikow
         run: ls -la
+
+      - name: testujemy zmienne input
+        run: |
+          echo "Wybrałeś klienta: $KLIENT"
+          echo "Podane imię i nazwisko: ${{ inputs.nazwa_operatora }}"
+        env:
+          KLIENT: ${{ inputs.wybor_klienta }}
