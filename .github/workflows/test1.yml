@@ -92,12 +92,15 @@ jobs:
 
 
       - name: Tworzenie zmiennej z wersją jadra systemu operacyjnego
+        id: zmienna_jadro
         run: |
          JADRO=$(uname -a)
          echo "Jadro w systemie to $JADRO"
 
       - name: Wyswietl zawartosc zmiennej jadro
-        run: echo "Jadro w systemie to $JADRO"
+        run: echo "Jadro w systemie to $wersja_jadro"
+        env:
+          wersja_jadro: ${{ steps.zmienna_jadro.outputs.JADRO }}
 
 
 
