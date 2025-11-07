@@ -6,6 +6,9 @@ on:
 jobs:
   testy_sekretu:
     runs-on: ubuntu-latest
+    environment:
+      name: 'Produkcja'
+
 
     steps:
       - name: Test sekretu repozytorium
@@ -13,3 +16,6 @@ jobs:
         
       - name: Test zmiennej repozytorium
         run: echo "Zmienna repozytorium to ${{ vars.Testowa_zmienna_repo }}"
+
+      - name: Test sekretu srodowiska
+        run: echo "Sekret srodowiska to ${{ secrets.sekret_srodowiska }}"    
