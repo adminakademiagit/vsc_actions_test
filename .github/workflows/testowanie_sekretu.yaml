@@ -24,9 +24,8 @@ jobs:
 
       - name: Odszyfrowanie pliku
         run: |
-		  mkdir $HOME/secrets
-		  gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.HASLO_GPG1 }}" --output $HOME/secrets/sekret.json sekret.json.gpg
-		  echo "Sekret srodowiska to ${{ secrets.sekret_srodowiska }}"     
+          mkdir $HOME/secrets
+          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.HASLO_GPG1 }}" --output $HOME/secrets/sekret.json sekret.json.gpg 
 
       - name: Podgląd pliku odszyfrowanego
         run: cat $HOME/secrets/sekret.json
