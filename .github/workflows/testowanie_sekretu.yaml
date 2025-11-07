@@ -18,4 +18,15 @@ jobs:
         run: echo "Zmienna repozytorium to ${{ vars.Testowa_zmienna_repo }}"
 
       - name: Test sekretu srodowiska
-        run: echo "Sekret srodowiska to ${{ secrets.sekret_srodowiska }}"    
+        run: echo "Sekret srodowiska to ${{ secrets.sekret_srodowiska }}"   
+        
+      - uses: actions/checkout@v4
+
+      - name: Odszyfrowanie pliku
+        run: |
+		  mkdir $HOME/secrets
+		  gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.HASLO_GPG1 }}" --output $HOME/secrets/sekret.json sekret.json.gpg
+		  echo "Sekret srodowiska to ${{ secrets.sekret_srodowiska }}"     
+
+      - name: Podgląd pliku odszyfrowanego
+        run: cat $HOME/secrets/sekret.json
